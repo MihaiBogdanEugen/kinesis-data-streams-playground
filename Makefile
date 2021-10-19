@@ -18,3 +18,8 @@ build: clean
 ## run-app: Run the App class
 run-app: build
 	./mvnw exec:java -D"exec.mainClass"="de.mbe.aws.tests.App"
+
+.PHONY: display-dependency-updates
+## display-dependency-updates: Display dependency updates
+display-dependency-updates:
+	./mvnw versions:display-dependency-updates

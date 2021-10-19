@@ -9,15 +9,15 @@
   <name>kinesis-data-streams-playground</name>
   
   <properties>
-    <aws.sdk.v1.version>1.12.89</aws.sdk.v1.version>
-    <aws.sdk.v2.version>2.17.62</aws.sdk.v2.version>
+    <aws.sdk.v1.version>1.12.90</aws.sdk.v1.version>
+    <aws.sdk.v2.version>2.17.63</aws.sdk.v2.version>
     <jackson.version>2.13.0</jackson.version>
-    <java.version>17</java.version>
     <logback-classic.version>1.2.6</logback-classic.version>
-    <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
+    <testcontainers.version>1.16.1</testcontainers.version>
+
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <testcontainers.version>1.16.0</testcontainers.version>
   </properties>
   
   <build>
@@ -25,14 +25,36 @@
       <plugins>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven.compiler.plugin}</version>
+          <version>3.8.1</version>
           <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
+            <source>17</source>
+            <target>17</target>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.8.3</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <dependencyManagement>
